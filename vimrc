@@ -1,10 +1,9 @@
-set nocompatible
 
 set incsearch " incremental search
 
 set ignorecase " case insensitive search ...
 set smartcase  " ... unless search includes capital letters
-
+ 
 set scrolloff=2 " keep 2 lines of context around cursor 
   
 set visualbell " no beeps
@@ -13,6 +12,9 @@ set noerrorbells " no beeps
 set title " terminal window shows title of file
 
 imap ;; <Esc>
+noremap <C-S>	:w<CR>
+vnoremap <C-S>	<Esc>:w<CR><C-V>
+inoremap <C-S>	<Esc>:w<CR>a
 
 " Color modifications
 "

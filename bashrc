@@ -25,7 +25,13 @@ if [ "$TERM" == "xterm" ]; then
 	export TERM=xterm-256color
 fi
 
+# Deactive terminal flow-control commands (ex. CTRL-S should not disable updating output of terminal)
+stty ixany 
+stty ixoff -ixon
+
+#---------------------------------------------------------------------------------------
 # Run ssh-agent (if it isn't already running) so you can commit to GitHub automatically
+#---------------------------------------------------------------------------------------
 
 # Note: ~/.ssh/environment should not be used, as it
 #       already has a different purpose in SSH.
@@ -75,3 +81,7 @@ elif ! agent_has_keys; then
 fi
 
 unset env
+
+#---------------------------------------------------------------------------------------
+# End ssh-agent code
+#---------------------------------------------------------------------------------------
