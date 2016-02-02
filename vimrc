@@ -18,11 +18,12 @@ inoremap <C-S>	<Esc>:w<CR>a
 
 " Hitting enter on keyboard in command mode creates a newline
 nmap <CR> ko<Esc> 
+" Hitting backspace on keyboard deletes an empty line
+nmap <BS> _dd
 
 " Color modifications
 highlight Normal ctermbg=white
 set background=light
-
 
 if &t_Co >= 256 || has("gui_running")
 	colorscheme developer 
