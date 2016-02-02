@@ -16,8 +16,10 @@ noremap <C-S>	:w<CR>
 vnoremap <C-S>	<Esc>:w<CR><C-V>
 inoremap <C-S>	<Esc>:w<CR>a
 
+" Hitting enter on keyboard in command mode creates a newline
+nmap <CR> o<Esc> 
+
 " Color modifications
-"
 highlight Normal ctermbg=white
 set background=light
 
