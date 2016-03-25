@@ -15,6 +15,8 @@ imap ;; <Esc>
 noremap <C-S>	:w<CR>
 vnoremap <C-S>	<Esc>:w<CR><C-V>
 inoremap <C-S>	<Esc>:w<CR>a
+noremap L $
+noremap H ^
 
 " Hitting enter on keyboard in command mode creates a newline
 nmap <CR> ko<Esc> 
