@@ -50,7 +50,7 @@ else # with windows, we only care about vim and vimperatorrc for now.
 			else 
 				rm $HOME\\dotfiles_old\\.$file 2>/dev/null
 			fi
-			mv $HOME\\.$file $HOME\\dotfiles_old\\
+			mv "$HOME\\.$file" "$HOME\\dotfiles_old\\"
 			echo "mklink $HOME\\.$file $HOME\\dotfiles\\$file" | cmd /C /Q 1>/dev/null
 		fi
     done
