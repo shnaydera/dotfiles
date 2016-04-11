@@ -1,0 +1,9 @@
+nmap ; :
+inoremap ;; <Esc>
+cnoremap ;; <Esc>
+nnoremap gn :tabn<CR>
+nnoremap gp gT
+noremap <C-a> i<C-a>
+nnoremap gj :back<CR>
+nnoremap gk :forward<CR>
+imap <C-a> <End><C-S-Home>

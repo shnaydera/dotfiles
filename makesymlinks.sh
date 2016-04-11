@@ -6,9 +6,16 @@
 
 ########## Variables
 
+windowsFlag=0	# 1 if we are running this on Windows
+if [[ $SYSTEMROOT == "C:\\windows" ]]; then 
+	windowsFlag=1
+	HOME=$USERPROFILE
+fi
+
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
-files="bashrc vimrc vim zshrc oh-my-zsh"    # list of files/folders to symlink in homedir
+linux_files="bashrc vim zshrc oh-my-zsh vimperatorrc"    # list of files/folders to symlink in homedir (for linux)
+win_files="vim vimperatorrc"    # list of files/folders to symlink in homedir (for windows)
 
 ##########
 
@@ -23,12 +30,31 @@ cd $dir
 echo "done"
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks from the homedir to any files in the ~/dotfiles directory specified in $files
-for file in $files; do
-    echo "Moving any existing dotfiles from ~ to $olddir"
-    mv ~/.$file ~/dotfiles_old/
-    echo "Creating symlink to $file in home directory."
-    ln -s $dir/$file ~/.$file
-done
+if [[ windowsFlag -eq 0 ]]; then 
+	echo "Moving any existing dotfiles from ~ to $olddir"
+	for file in $linux_files; do 
+	    mv ~/.$file ~/dotfiles_old/
+	    echo "Creating symlink to $file in home directory."
+	    ln -s $dir/$file ~/.$file
+   	done
+else # with windows, we only care about vim and vimperatorrc for now. 
+	echo "Deleting any existing files in $olddir, and moving existing dotfiles to that directory."
+	for file in $win_files; do
+		if [[ $file == 'vim' ]]; then # Windows requires "vim" directory be called "vimfiles"
+			rmdir $HOME\\dotfiles_old\\vimfiles 2>/dev/null
+			mv $HOME\\vimfiles $HOME\\dotfiles_old\\ 2>/dev/null
+			echo "mklink /d $HOME\\vimfiles $HOME\\dotfiles\\vim" | cmd /C /Q 1>/dev/null
+		else
+			if [[ -d $HOME\\dotfiles_old\\$file ]]; then
+				rmdir $HOME\\dotfiles_old\\$file 2>/dev/null
+			else 
+				rm $HOME\\dotfiles_old\\.$file 2>/dev/null
+			fi
+			mv $HOME\\.$file $HOME\\dotfiles_old\\
+			echo "mklink $HOME\\.$file $HOME\\dotfiles\\$file" | cmd /C /Q 1>/dev/null
+		fi
+    done
+fi 
 
 #install_zsh () {
 ## Test to see if zshell is installed.  If it is:

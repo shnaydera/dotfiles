@@ -1,4 +1,6 @@
 
+set nocompatible
+
 set incsearch " incremental search
 
 set ignorecase " case insensitive search ...
@@ -11,12 +13,30 @@ set noerrorbells " no beeps
                 
 set title " terminal window shows title of file
 
-imap ;; <Esc>
+set hidden
+
+" -- Following lines allow you to view carriage returns (set binary) and
+"  list chars (set listchars -> set list) such as tabs, newlines, etc. --
+set listchars=tab:>-,eol:$
+" set binary
+" set list
+" command -nargs=0 Hidden :e ++ff=unix " Toggle displaying hidden characters (right now only turns on carriage returns, need to add toggling and displaying list chars as well)
+
+inoremap ;; <Esc>
+vnoremap ;; <Esc> 
 noremap <C-S>	:w<CR>
 vnoremap <C-S>	<Esc>:w<CR><C-V>
 inoremap <C-S>	<Esc>:w<CR>a
 noremap L $
 noremap H ^
+nnoremap <Esc> :noh<return><Esc>
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
+nnoremap <Tab> >>
+nnoremap <S-Tab> <<
+command -nargs=* Te tabedit <args>
+map <C-a> GVgg
+set backspace=indent,eol,start
 
 " Hitting enter on keyboard in command mode creates a newline
 nmap <CR> ko<Esc> 

@@ -1,0 +1,8 @@
+
+set guioptions-=m		" disable gui menu
+set go-=T 				" disable toolbar
+
+au GUIEnter * simalt ~x " maximize GUI on startup for gvim
+
+set guifont=Consolas:h10
+
