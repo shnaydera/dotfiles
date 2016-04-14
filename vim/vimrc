@@ -56,11 +56,13 @@ if &t_Co > 2 || has("gui_running")
 	syntax on
 endif
 
+filetype plugin indent on " allow customized settings, plugins and indentation settings based on file type
+
 " Pathogen setup
 "filetype off
 "
 "call pathogen#infect()
 "call pathogen#helptags()
 "
-"filetype plugin indent on
+
 
