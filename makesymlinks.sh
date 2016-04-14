@@ -15,7 +15,7 @@ fi
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
 linux_files="bashrc vim zshrc oh-my-zsh vimperatorrc"    # list of files/folders to symlink in homedir (for linux)
-win_files="vim vimperatorrc"    # list of files/folders to symlink in homedir (for windows)
+win_files="bashrc vim vimperatorrc"    # list of files/folders to symlink in homedir (for windows)
 
 ##########
 
@@ -37,7 +37,7 @@ if [[ windowsFlag -eq 0 ]]; then
 	    echo "Creating symlink to $file in home directory."
 	    ln -s $dir/$file ~/.$file
    	done
-else # with windows, we only care about vim and vimperatorrc for now. 
+else # with windows, we need special logic for handling symlinks and vim files
 	echo "Deleting any existing files in $olddir, and moving existing dotfiles to that directory."
 	for file in $win_files; do
 		if [[ $file == 'vim' ]]; then # Windows requires "vim" directory be called "vimfiles"

@@ -7,7 +7,12 @@
 
 # You may uncomment the following lines if you want `ls' to be colorized:
 export LS_OPTIONS='--color=auto'
-eval "`dircolors`"
+if [ "$MSYSTEM" ]; then
+    SHELL=$SHELL # for some reason, MSYS bash doesn't set the SHELL variable even though $SHELL returns a value
+    export LS_OPTIONS='' # MSYS bash colors are hard to see, so disabling for now
+fi
+eval "`dircolors -b`" # default to bash colors
+
 alias ls='ls $LS_OPTIONS'
 alias ll='ls $LS_OPTIONS -l'
 alias l='ls $LS_OPTIONS -lA'
@@ -17,9 +22,18 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Devel
-source /usr/local/bin/virtualenvwrapper.sh
+if [ "$MSYSTEM" ]; then # on Windows w/ MSYS
+    export MSYS_HOME=/c/msys
+    export WORKON_HOME=/c/MSYS/home/ashnayder/.virtualenvs
+    if [ -e /c/Users/ashnayder/AppData/Local/Programs/Python/Python35-32/Scripts/virtualenvwrapper.sh ]; then
+        source /c/Users/ashnayder/AppData/Local/Programs/Python/Python35-32/Scripts/virtualenvwrapper.sh
+    fi
+    export PATH="$PATH:/c/Program Files/Git/usr/bin"
+else # on Linux
+    export WORKON_HOME=$HOME/.virtualenvs
+    export PROJECT_HOME=$HOME/Devel
+    source /usr/local/bin/virtualenvwrapper.sh
+fi
 
 if [ "$TERM" == "xterm" ]; then
 	export TERM=xterm-256color
