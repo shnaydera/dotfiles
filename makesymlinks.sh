@@ -5,9 +5,8 @@
 ############################
 
 ########## Variables
-
 windowsFlag=0	# 1 if we are running this on Windows
-if [[ $SYSTEMROOT == "C:\\windows" ]]; then 
+if [[ $SYSTEMROOT == "C:\Windows" ]]; then 
 	windowsFlag=1
 	HOME=$USERPROFILE
 fi
@@ -50,7 +49,9 @@ else # with windows, we need special logic for handling symlinks and vim files
 			else 
 				rm $HOME\\dotfiles_old\\.$file 2>/dev/null
 			fi
-			mv "$HOME\\.$file" "$HOME\\dotfiles_old\\"
+			echo "Moving $HOME\\.$file to $HOME\\dofiles_old\.$file"
+			mv "$HOME\\.$file" "$HOME\\dotfiles_old\\.$file"
+			echo "Moved file."
 			echo "mklink $HOME\\.$file $HOME\\dotfiles\\$file" | cmd /C /Q 1>/dev/null
 		fi
     done
