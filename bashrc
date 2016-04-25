@@ -46,7 +46,6 @@ stty ixoff -ixon
 #---------------------------------------------------------------------------------------
 # Run ssh-agent (if it isn't already running) so you can commit to GitHub automatically
 #---------------------------------------------------------------------------------------
-
 # Note: ~/.ssh/environment should not be used, as it
 #       already has a different purpose in SSH.
 
