@@ -27,6 +27,8 @@ if [ "$MSYSTEM" ]; then # on Windows w/ MSYS
     export WORKON_HOME=/c/MSYS/home/ashnayder/.virtualenvs
     if [ -e /c/Users/ashnayder/AppData/Local/Programs/Python/Python35-32/Scripts/virtualenvwrapper.sh ]; then
         source /c/Users/ashnayder/AppData/Local/Programs/Python/Python35-32/Scripts/virtualenvwrapper.sh
+	elif [ -e /c/Python35/Scripts/virtualenvwrapper.sh ]; then
+		source /c/Python35/Scripts/virtualenvwrapper.sh
     fi
     export PATH="$PATH:/c/Program Files/Git/usr/bin"
 else # on Linux
