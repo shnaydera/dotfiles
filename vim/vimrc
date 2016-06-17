@@ -1,5 +1,26 @@
 set nocompatible
 
+" required for Vundle
+filetype off
+set rtp+=~/dotfiles/vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+""" Insert Vundle plugins here """
+" Plugin 'tmhedberg/SimpylFold'
+" Plugin 'vim-scripts/indentpython.vim'
+" Plugin 'scrooloose/syntastic'
+" Following plug-in adds PEP8 checking for python
+" Plugin 'nvie/vim-flake8'
+" Following plug-in adds terminal colorscheme Zenburn
+" Plugin 'jnurmine/Zenburn'
+" Following plug-in adds gui colorscheme Solarized
+" Plugin 'altercation/vim-colors-solarized'
+" Plugin 'scrooloose/nerdtree'
+" Plugin 'Valloric/YouCompleteMe'
+""" End Vundle plugins here """
+call vundle#end()
+filetype plugin indent on " allow customized settings, plugins and indentation settings based on file type
+
 set incsearch " incremental search
 
 set ignorecase " case insensitive search ...
@@ -21,6 +42,7 @@ set listchars=tab:>-,eol:$
 " set list
 " command -nargs=0 Hidden :e ++ff=unix " Toggle displaying hidden characters (right now only turns on carriage returns, need to add toggling and displaying list chars as well)
 
+" Set custom mappings 
 inoremap ;; <Esc>
 vnoremap ;; <Esc> 
 noremap <C-S>	:w<CR>
@@ -36,6 +58,8 @@ nnoremap <S-Tab> <<
 command -nargs=* Te tabedit <args>
 map <C-a> GVgg
 set backspace=indent,eol,start
+" Enable folding with the spacebar
+nnoremap <space> za
 
 " Hitting enter on keyboard in command mode creates a newline
 nmap <CR> ko<Esc> 
@@ -52,17 +76,14 @@ endif
 
 if &t_Co > 2 || has("gui_running")
 	" switch syntax highlighting on
-        " colorscheme evening 
+        " colorscheme evening
+	let python_highlight_all=1
 	syntax on
 endif
 
-filetype plugin indent on " allow customized settings, plugins and indentation settings based on file type
+" Enable folding"
+set foldmethod=indent
+set foldlevel=99
 
-" Pathogen setup
-"filetype off
-"
-"call pathogen#infect()
-"call pathogen#helptags()
-"
-
+" For YouCompleteMe, close window after completing, and making it easy to goto definitions
 
