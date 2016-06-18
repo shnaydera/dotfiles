@@ -45,6 +45,10 @@ set listchars=tab:>-,eol:$
 " Set custom mappings 
 inoremap ;; <Esc>
 vnoremap ;; <Esc> 
+nnoremap ; :
+nnoremap : ;
+vnoremap ; :
+vnoremap : ;
 noremap <C-S>	:w<CR>
 vnoremap <C-S>	<Esc>:w<CR><C-V>
 inoremap <C-S>	<Esc>:w<CR>a
