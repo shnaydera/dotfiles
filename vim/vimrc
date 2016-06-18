@@ -6,16 +6,16 @@ set rtp+=~/dotfiles/vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 """ Insert Vundle plugins here """
-" Plugin 'tmhedberg/SimpylFold'
-" Plugin 'vim-scripts/indentpython.vim'
-" Plugin 'scrooloose/syntastic'
+Plugin 'tmhedberg/SimpylFold'
+Plugin 'vim-scripts/indentpython.vim'
+Plugin 'scrooloose/syntastic'
 " Following plug-in adds PEP8 checking for python
-" Plugin 'nvie/vim-flake8'
+Plugin 'nvie/vim-flake8'
 " Following plug-in adds terminal colorscheme Zenburn
-" Plugin 'jnurmine/Zenburn'
+Plugin 'jnurmine/Zenburn'
 " Following plug-in adds gui colorscheme Solarized
-" Plugin 'altercation/vim-colors-solarized'
-" Plugin 'scrooloose/nerdtree'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'scrooloose/nerdtree'
 " Plugin 'Valloric/YouCompleteMe'
 """ End Vundle plugins here """
 call vundle#end()
